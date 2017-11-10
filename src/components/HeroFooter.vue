@@ -4,10 +4,10 @@
       <div class="container">
         <div class="navbar-menu">
           <div class="navbar-end">
-            <a href="https://unsplash.com/photos/YvCg5X3pWzc"
+            <a :href="attributionLink"
                target="_new"
                class="navbar-item is-size-7">
-               Image from @lamagnotti
+               {{ attribution }}
             </a>
           </div>
         </div>
@@ -18,6 +18,28 @@
 
 <script>
   export default {
-    name: 'hero-footer'
+    name: 'hero-footer',
+
+    props: {
+      backgroundOwner: {
+        type: String,
+        required: true
+      },
+
+      backgroundId: {
+        type: String,
+        required: true
+      }
+    },
+
+    computed: {
+      attribution: function () {
+        return `Image by ${this.backgroundOwner}`
+      },
+
+      attributionLink: function () {
+        return `https://unsplash.com/photos/${this.backgroundId}`
+      }
+    }
   }
 </script>
