@@ -7,7 +7,7 @@
             <a :href="attributionLink"
                target="_new"
                class="navbar-item is-size-7">
-               {{ attribution }}
+               <i class="fa fa-camera"></i> {{ attribution }}
             </a>
           </div>
         </div>
@@ -43,3 +43,7 @@
     }
   }
 </script>
+
+<style lang="scss" scoped>
+  .fa { margin-right: 0.5rem; }
+</style>
