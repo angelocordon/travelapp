@@ -1,16 +1,17 @@
 <template>
   <section id="app" class="hero is-dark is-fullheight">
-    <nav-bar></nav-bar>
-    <hero-body></hero-body>
+    <hero-highlight-image :background-url="header.background.url"/>
+    <nav-bar/>
+    <hero-body/>
     <hero-footer
       :background-owner="header.background.owner"
-      :background-id="header.background.id">
-    </hero-footer>
+      :background-id="header.background.id"/>
   </section>
 </template>
 
 <script>
   import NavBar from './components/NavBar'
+  import HeroHighlightImage from './components/HeroHighlightImage'
   import HeroBody from './components/HeroBody'
   import HeroFooter from './components/HeroFooter'
 
@@ -19,6 +20,7 @@
 
     components: {
       NavBar,
+      HeroHighlightImage,
       HeroBody,
       HeroFooter
     },
@@ -43,32 +45,6 @@
           url: 'photo-1504814532849-cff240bbc503?auto=format&fit=crop&w=1868&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'
         }
       }
-    },
-
-    mounted: function () {
-      this.setHeaderBackground()
-    },
-
-    computed: {
-      backgroundImageUrl: function () {
-        return `url(https://images.unsplash.com/${this.header.background.url})`
-      }
-    },
-
-    methods: {
-      setHeaderBackground: function () {
-        document.getElementById('app')
-          .style
-          .backgroundImage = this.backgroundImageUrl
-      }
     }
   }
 </script>
-
-<style lang="scss" scoped>
-  .hero {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-</style>

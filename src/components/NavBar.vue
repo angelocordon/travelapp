@@ -10,7 +10,9 @@
             <a class="navbar-item">
               <i class="fa fa-shopping-cart"></i>
             </a>
-            <a class="navbar-item">☰</a>
+            <a class="navbar-item">
+              <i class="fa fa-info-circle"></i>
+            </a>
           </div>
         </div>
       </div>

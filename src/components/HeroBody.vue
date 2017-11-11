@@ -13,13 +13,16 @@
             <div class="control has-icons-left">
               <input class="input is-large"
                      type="text"
-                     placeholder="Try Iceland.">
+                     placeholder="Try Iceland."
+                     v-model="destination"
+                     @keyup.enter="searchDestination">
               <span class="icon is-large is-left">
                 <i class="fa fa-compass"></i>
               </span>
             </div>
             <div class="control">
-              <button class="button is-info is-large">
+              <button class="button is-info is-large"
+                      @click="searchDestination">
                 <i class="fa fa-arrow-circle-o-right"></i>
               </button>
             </div>
@@ -32,6 +35,40 @@
 
 <script>
   export default {
-    name: 'hero-body'
+    name: 'hero-body',
+
+    data: function () {
+      return {
+        destination: ''
+      }
+    },
+
+    methods: {
+      searchDestination: function () {
+        this.setActiveSearch()
+      },
+
+      setActiveSearch: function () {
+        this.hideTitleElements()
+        this.setActiveSearchBar()
+      },
+
+      setActiveSearchBar: function () {
+
+      },
+
+      hideTitleElements: function () {
+        var elements = document.querySelectorAll('.title, .subtitle')
+        elements.forEach(function (el) {
+          el.classList.add('is-hidden')
+        })
+      }
+    }
   }
 </script>
+
+<style lang="scss" scoped>
+  .input { text-transform: capitalize; }
+
+  .is-hidden { display: none; }
+</style>
