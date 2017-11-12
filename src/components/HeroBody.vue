@@ -3,11 +3,15 @@
     <div class="container">
       <div class="columns">
         <div class="column is-three-fifths">
-          <h1 class="title is-1 is-uppercase is-spaced">
+          <h1 class="title is-1 is-uppercase is-spaced"
+              :class="activeQueryClass">
             It's time to make your great escape.
           </h1>
 
-          <p class="subtitle is-3">Where should we go?</p>
+          <p class="subtitle is-3"
+             :class="activeQueryClass">
+            Where should we go?
+          </p>
 
           <div class="field has-addons">
             <div class="control has-icons-left">
@@ -37,31 +41,36 @@
   export default {
     name: 'hero-body',
 
+    props: {
+      activeQuery: {
+        type: Boolean,
+        required: true
+      }
+    },
+
     data: function () {
       return {
         destination: ''
       }
     },
 
+    computed: {
+      activeQueryClass: function () {
+        if (this.activeQuery) { return 'is-hidden' }
+      }
+    },
+
+    watch: {
+      destination: function () {
+        if (!this.destination) { this.$emit('clear') }
+      }
+    },
+
     methods: {
       searchDestination: function () {
-        this.setActiveSearch()
-      },
-
-      setActiveSearch: function () {
-        this.hideTitleElements()
-        this.setActiveSearchBar()
-      },
-
-      setActiveSearchBar: function () {
-
-      },
-
-      hideTitleElements: function () {
-        var elements = document.querySelectorAll('.title, .subtitle')
-        elements.forEach(function (el) {
-          el.classList.add('is-hidden')
-        })
+        if (this.destination) {
+          this.$emit('query')
+        }
       }
     }
   }

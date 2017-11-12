@@ -4,7 +4,10 @@
       <div class="container">
         <div class="navbar-menu">
           <div class="navbar-brand">
-            <a class="navbar-item">🜃</a>
+            <a class="navbar-item"
+               @click="clearQuery">
+              🜃
+            </a>
           </div>
           <div class="navbar-end">
             <a class="navbar-item">
@@ -22,7 +25,13 @@
 
 <script>
   export default {
-    name: 'nav-bar'
+    name: 'nav-bar',
+
+    methods: {
+      clearQuery: function () {
+        this.$emit('clear')
+      }
+    }
   }
 </script>
 
